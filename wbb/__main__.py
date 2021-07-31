@@ -86,7 +86,7 @@ async def start_bot():
         "+===============================================================+"
     )
     print(
-        "|                              WBB                              |"
+        "|                              Rozakul Halim                    |"
     )
     print(
         "+===============+===============+===============+===============+"
@@ -114,7 +114,7 @@ async def help_command(_, message):
                     ),
                     InlineKeyboardButton(
                         text="Repo 🛠",
-                        url="https://github.com/thehamkercat/WilliamButcherBot",
+                        url="https://github.com/RozakulHalimz7/WilliamButhcerBot",
                     ),
                 ],
                 [
@@ -123,7 +123,7 @@ async def help_command(_, message):
                         callback_data="stats_callback",
                     ),
                     InlineKeyboardButton(
-                        text="Support 👨", url="t.me/WBBSupport"
+                        text="Support 👨", url="t.me/MRojeck_Lim"
                     ),
                 ],
             ]
@@ -140,7 +140,7 @@ async def help_command(_, message):
                 ),
                 InlineKeyboardButton(
                     text="Repo 🛠",
-                    url="https://github.com/thehamkercat/WilliamButcherBot",
+                    url="https://github.com/RozakulHalimz7/WilliamButcherBot",
                 ),
             ],
             [
@@ -149,7 +149,7 @@ async def help_command(_, message):
                     callback_data="stats_callback",
                 ),
                 InlineKeyboardButton(
-                    text="Support 👨", url="t.me/WBBSupport"
+                    text="Support 👨", url="t.me/MRojeck_Lim"
                 ),
             ],
             [
@@ -161,7 +161,7 @@ async def help_command(_, message):
         ]
     )
     await message.reply(
-        f"Hey there! My name is {BOT_NAME}. I can manage your group with lots of useful features, feel free to add me to your group.",
+        f"Hey there! My name is {BOT_NAME}. I can manage your group with lots of useful features, Feel free to add me to your group.",
         reply_markup=keyboard,
     )
 
