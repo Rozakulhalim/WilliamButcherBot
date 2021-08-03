@@ -21,10 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
+import codecs
+import pickle
 from typing import Dict, List, Union
 
 from wbb import db
-from wbb.utils.functions import obj_to_str, str_to_obj
 
 """
 SOME THINGS ARE FUCKED UP HERE, LIKE TOGGLEABLES HAVE THEIR OWN COLLECTION
@@ -57,6 +58,19 @@ flood_toggle_db = db.flood_toggle
 spam_toggle_db = db.spam_toggle
 rssdb = db.rss
 nightdb = db.night_mode
+
+
+def obj_to_str(object):
+    if not object:
+        return False
+    string = codecs.encode(pickle.dumps(object), "base64").decode()
+    return string
+
+
+def str_to_obj(string: str):
+    object = pickle.loads(codecs.decode(string.encode(), "base64"))
+    return object
+
 
 """ Notes functions """
 
