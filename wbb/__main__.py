@@ -151,7 +151,7 @@ async def help_command(_, message):
                     callback_data="stats_callback",
                 ),
                 InlineKeyboardButton(
-                    text="Support 👨", url="t.me/MRojeck_Lim"
+                    text="Support 👨", url="https://t.me/MRojeck_Lim"
                 ),
             ],
             [
