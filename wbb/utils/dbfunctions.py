@@ -56,6 +56,7 @@ trustdb = db.trust
 flood_toggle_db = db.flood_toggle
 spam_toggle_db = db.spam_toggle
 rssdb = db.rss
+nightdb = db.night_mode
 
 """ Notes functions """
 
@@ -895,3 +896,26 @@ async def get_rss_feeds_count() -> int:
     feeds = rssdb.find({"chat_id": {"$exists": 1}})
     feeds = await feeds.to_list(length=10000000)
     return len(feeds)
+
+"""NIGHT MODE DB"""
+
+
+async def add_night_chat(chat_id):
+    await nightdb.insert_one({"chat_id": chat_id})
+
+
+async def rm_night_chat(chat_id):
+    await nightdb.delete_one({"chat_id": chat_id})
+
+
+async def get_all_night_chats():
+    lol = [ujwal async for ujwal in nightdb.find({})]
+    return lol
+
+
+async def is_night_chat_in_db(chat_id):
+    k = await nightdb.find_one({"chat_id": chat_id})
+    if k:
+        return True
+    else:
+        return False    
