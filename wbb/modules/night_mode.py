@@ -24,6 +24,7 @@ __HELP__ = """ Here For Help Night Mode
 
 @app.on_message(
     filters.command("on_grp")) & ~filters.edited & ~filters.private
+)    
 async def scgrp(client, message):
     pablo = await edit_or_reply(message, "`Memproses...`")
     lol = await is_night_chat_in_db(message.chat.id)
@@ -36,6 +37,7 @@ async def scgrp(client, message):
 
 @app.on_message(
     filters.command("on_grp")) & ~filters.edited & ~filters.private
+)    
 async def scgrp(client, message):
     pablo = await edit_or_reply(message, "`Searching For Anime.....`")
     lol = await is_night_chat_in_db(message.chat.id)
