@@ -23,7 +23,7 @@ __HELP__ = """ Here For Help Night Mode
 /nightmode off|disable|no To Disable Night Mode"""
 
 @app.on_message(
-    filters.command("on_grp")) & ~filters.edited & ~filters.private
+    filters.command("on_grp") & ~filters.edited & ~filters.private
 )    
 async def scgrp(client, message):
     pablo = await edit_or_reply(message, "`Memproses...`")
@@ -36,7 +36,7 @@ async def scgrp(client, message):
 
 
 @app.on_message(
-    filters.command("on_grp")) & ~filters.edited & ~filters.private
+    filters.command("on_grp") & ~filters.edited & ~filters.private
 )    
 async def scgrp(client, message):
     pablo = await edit_or_reply(message, "`Searching For Anime.....`")
