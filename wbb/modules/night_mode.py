@@ -9,6 +9,7 @@
 from pyrogram import filters
 
 from wbb import app, BOT_USERNAME, LOG_GROUP_ID
+from wbb import app2, BOT_USERNAME, LOG_GROUP_ID
 from wbb.core.decorators.permissions import adminsOnly
 from wbb.utils.dbfunctions import is_night_chat_in_db, get_all_night_chats, rm_night_chat, add_night_chat
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -33,7 +34,7 @@ async def scgrp(client, message):
             pablo = await message.reply("`Memproses...`")
             lol = await is_night_chat_in_db(message.chat.id)
             if lol:
-                await pablo.edit("Obrolan Ini Telah Mengaktifkan Mode Malam.")
+                await pablo.edit("⚠️ Obrolan Ini Telah Mengaktifkan Mode Malam.")
                 return
             await add_night_chat(message.chat.id)
             await pablo.edit(f"**Ditambahkan Obrolan {message.chat.title} dengan Id {message.chat.id} ke Database. Grup ini akan ditutup pada jam 24PM(WIB) dan akan dibuka pukul 6AM(WIB)**")
@@ -41,7 +42,7 @@ async def scgrp(client, message):
             pablo = await message.reply("`Memproses...`")
             lol = await is_night_chat_in_db(message.chat.id)
             if not lol:
-                await pablo.edit("Obrolan Ini Belum Mengaktifkan Mode Malam.")
+                await pablo.edit("⚠️ Obrolan Ini Belum Mengaktifkan Mode Malam.")
                 return
             await rm_night_chat(message.chat.id)
             await pablo.edit(f"**Menghapus obrolan {message.chat.title} dengan Id {message.chat.id} dari Database. Grup ini tidak akan ditutup pada 24PM(WIB) dan akan dibuka pada 6AM(WIB)**")
@@ -103,7 +104,7 @@ async def job_open():
         try:
             await app.send_message(
                 int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
-                quote+"\n~ "+author+"\n**Powered By {BOT_USERNAME} **"
+                quote+"\n~ "+author+"\n\n**Powered By {BOT_USERNAME} **"
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -128,5 +129,5 @@ async def job_open():
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_open, trigger="cron", hour=5, minute=0)
+scheduler.add_job(job_open, trigger="cron", hour=05, minute=0)
 scheduler.start()
