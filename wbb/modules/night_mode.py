@@ -33,8 +33,8 @@ async def scgrp(client, message):
     	     pablo = await message.reply("`Memproses...`")
     	     lol = await is_night_chat_in_db(messagr.chat.id)
     	     if lol:
-                 await pablo.edit("Obrolan Ini Telah Mengaktifkan Mode Malam.")
-                 return
+                await pablo.edit("Obrolan Ini Telah Mengaktifkan Mode Malam.")
+                return
              await add_night_chat(message.chat.id)
              await pablo.edit(f"**Ditambahkan Obrolan {message.chat.title} dengan Id {message.chat.id} ke Database. Grup ini akan ditutup pada jam 24PM(WIB) dan akan dibuka pukul 6AM(WIB)**")
          elif "off" in args or "disable" in args or "no" in args:
