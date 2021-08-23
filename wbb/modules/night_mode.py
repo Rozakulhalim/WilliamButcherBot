@@ -24,14 +24,15 @@ __HELP__ = """ Here For Help Night Mode
 
 @app.on_message(
     filters.command("nightmode") & ~filters.edited & ~filters.private
-)    
+)
+@adminsOnly("can_change_info")
 async def scgrp(client, message):
     args = message.text.split(None, 1)[1].lower()
     try :
     	 if "on" in args or "enable" in args or "yes" in args:
     	     pablo = await message.reply("`Memproses...`")
-             lol = await is_night_chat_in_db(message.chat.id)
-             if lol:    
+    	     lol = await is_night_chat_in_db(messagr.chat.id)
+             if lol:
                  await pablo.edit("Obrolan Ini Telah Mengaktifkan Mode Malam.")
                  return
              await add_night_chat(message.chat.id)
@@ -39,16 +40,16 @@ async def scgrp(client, message):
          elif "off" in args or "disable" in args or "no" in args:
              pablo = await message.reply("`Memproses...`")
              lol = await is_night_chat_in_db(message.chat.id)
-             if not lol:  	
+             if not lol:
             	 await pablo.edit("Obrolan Ini Belum Mengaktifkan Mode Malam.")
             	 return
    	         await rm_night_chat(message.chat.id)
              await pablo.edit(f"**Menghapus obrolan {message.chat.title} dengan Id {message.chat.id} dari Database. Grup ini tidak akan ditutup pada 24PM(WIB) dan akan dibuka pada 6AM(WIB)**")
          elif not enable or not args:
              pablo = await message.reply("`Memproses...`")
-             pablo.edit(f"Sory I Can Only Understand your parameters")
+             pablo.edit(f"`Sory I Can Only Understand your parameters`")
     except:
-    	pablo.edit(f"Sory I Only Understand `/nightmode on|enable|yes and /nightmode off|disable|no`")
+    	pablo.edit(f"**Sory I Only Understand** `/nightmode on|enable|yes and /nightmode off|disable|no`")
 
 async def job_close():
     lol = await get_all_night_chats()
@@ -57,7 +58,7 @@ async def job_close():
     for warner in lol:
         try:
             await app.send_message(
-              int(warner.get("chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 22:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By {BOT_USERNAME}**"
+              int(warner.get("chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By {BOT_USERNAME}**"
             )
             await app.set_chat_permissions(
                         warner.get("chat_id"),
@@ -96,7 +97,7 @@ async def job_open():
     for warner in lol:
         try:
             await app.send_message(
-              int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n"+quote+"\n~ "+author+"\n**Powered By {BOT_USERNAME} **"
+              int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n"+quote+"\n~ "+author+"\n**Powered By {BOT_USERNAME} **"
             )
             await app.set_chat_permissions(
                         warner.get("chat_id"),
