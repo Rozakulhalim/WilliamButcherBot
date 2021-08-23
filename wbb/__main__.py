@@ -98,7 +98,7 @@ async def start_bot():
         except Exception:
             pass
     else:
-        await app.send_message(LOG_GROUP_ID, "Bot started!")
+        await app.send_message(LOG_GROUP_ID, "🛸 Bot started and Running SucsessFully\n\n🧑‍🏭Powered By `@MRojeck_Lim`")
     await idle()
     print("[INFO]: STOPPING BOT AND CLOSING AIOHTTP SESSION")
     await aiohttpsession.close()
@@ -115,8 +115,8 @@ async def help_command(_, message):
                         url=f"t.me/{BOT_USERNAME}?start=help",
                     ),
                     InlineKeyboardButton(
-                        text="Repo 🛠",
-                        url="https://github.com/RozakulHalimz7/WilliamButhcerBot",
+                        text="🛸 My Mirror Groups",
+                        url="https://t.me/CerminRaysha",
                     ),
                 ],
                 [
@@ -125,7 +125,7 @@ async def help_command(_, message):
                         callback_data="stats_callback",
                     ),
                     InlineKeyboardButton(
-                        text="Support 👨", url="t.me/MRojeck_Lim"
+                        text="OWNER 👨", url="t.me/MRojeck_Lim"
                     ),
                 ],
             ]
@@ -141,8 +141,8 @@ async def help_command(_, message):
                     text="Commands ❓", callback_data="bot_commands"
                 ),
                 InlineKeyboardButton(
-                    text="Repo 🛠",
-                    url="https://github.com/RozakulHalimz7/WilliamButcherBot",
+                    text="🛸 My Mirror Groups",
+                    url="https://t.me/CerminRaysha",
                 ),
             ],
             [
