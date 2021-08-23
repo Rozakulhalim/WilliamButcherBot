@@ -12,6 +12,11 @@
     "pyrogram"
     ],
     "stack": "container",
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }     
+    ],
     "env": {
         "BOT_TOKEN": {
             "description": "Obtain a Telegram bot token by contacting @BotFather",
