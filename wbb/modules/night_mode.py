@@ -30,7 +30,7 @@ async def scgrp(client, message):
     try :
     	 if "on" in args or "enable" in args or "yes" in args:
     	     pablo = await message.reply("`Memproses...`")
-             lol = await is_night_chat_in_db(message.chat.id)
+           lol = await is_night_chat_in_db(message.chat.id)
              if lol:    
                  await pablo.edit("Obrolan Ini Telah Mengaktifkan Mode Malam.")
                  return
