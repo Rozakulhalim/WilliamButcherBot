@@ -5,13 +5,12 @@
 # Please see < https://github.com/DevsExpo/blob/master/LICENSE >
 #
 # All rights reserved.
-import asyncio
 
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
 
-from wbb import app, BOT_USERNAME, LOG_GROUP_ID
-from wbb import app2, BOT_USERNAME, LOG_GROUP_ID
+from wbb import app, LOG_GROUP_ID
+from wbb import app2, LOG_GROUP_ID
 from wbb.core.decorators.permissions import adminsOnly
 from wbb.utils.dbfunctions import is_night_chat_in_db, get_all_night_chats, rm_night_chat, add_night_chat
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
