@@ -7,6 +7,7 @@
 # All rights reserved.
 
 from pyrogram import filters
+from pyrogram.types import ChatPermissions
 
 from wbb import app, BOT_USERNAME, LOG_GROUP_ID
 from wbb import app2, BOT_USERNAME, LOG_GROUP_ID
@@ -87,7 +88,7 @@ async def job_close():
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_close, trigger="cron", hour=0, minute=0)
+scheduler.add_job(job_close, trigger="cron", hour=8, minute=30)
 scheduler.start()
 
 
@@ -129,5 +130,5 @@ async def job_open():
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_open, trigger="cron", hour=5, minute=0)
+scheduler.add_job(job_open, trigger="cron", hour=8, minute=45)
 scheduler.start()
