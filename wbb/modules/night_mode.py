@@ -5,6 +5,7 @@
 # Please see < https://github.com/DevsExpo/blob/master/LICENSE >
 #
 # All rights reserved.
+import asyncio
 
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
@@ -38,7 +39,7 @@ async def scgrp(client, message):
                 await pablo.edit("⚠️ Obrolan Ini Telah Mengaktifkan Mode Malam.")
                 return
             await add_night_chat(message.chat.id)
-            await pablo.edit(f"**Ditambahkan Obrolan {message.chat.title} dengan Id {message.chat.id} ke Database. Grup ini akan ditutup pada jam 24PM(WIB) dan akan dibuka pukul 6AM(WIB)**")
+            await pablo.edit(f"**Ditambahkan Obrolan `{message.chat.title}` dengan 🆔 `{message.chat.id}` ke Database. Grup ini akan ditutup pada jam 24 PM(WIB) dan akan dibuka pukul 5 AM(WIB)**")
         elif "off" in args or "disable" in args or "no" in args:
             pablo = await message.reply("`Memproses...`")
             lol = await is_night_chat_in_db(message.chat.id)
@@ -46,7 +47,7 @@ async def scgrp(client, message):
                 await pablo.edit("⚠️ Obrolan Ini Belum Mengaktifkan Mode Malam.")
                 return
             await rm_night_chat(message.chat.id)
-            await pablo.edit(f"**Menghapus obrolan {message.chat.title} dengan Id {message.chat.id} dari Database. Grup ini tidak akan ditutup pada 24PM(WIB) dan akan dibuka pada 6AM(WIB)**")
+            await pablo.edit(f"💢**Menghapus obrolan `{message.chat.title}` dengan Id `{message.chat.id}` dari Database.\n🌒 NigthMode Tidak Aktif")
         elif not enable or not args:
             pablo = await message.reply("`Memproses...`")
             pablo.edit(f"`Sory I Can Only Understand your parameters`")
@@ -63,7 +64,7 @@ async def job_close():
         try:
             await app.send_message(
                 int(warner.get(
-                    "chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By {BOT_USERNAME}**"
+                    "chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By** @RozakulHalim_MBot"
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -82,13 +83,13 @@ async def job_close():
             logging.info(str(e))
             ido = warner.get("chat_id")
             try:
-                await app.send_message( LOG_GROUP_ID, f"[NIGHT MODE]\n\nFailed To Close The Group {ido}.\nError : {e}")
+                await app.send_message(LOG_GROUP_ID, f"[NIGHT MODE]\n\nFailed To Close The Group {ido}.\nError : {e}")
             except:
                 pass
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_close, trigger="cron", hour=8, minute=30)
+scheduler.add_job(job_close, trigger="cron", hour=0, minute=0)
 scheduler.start()
 
 
@@ -104,8 +105,8 @@ async def job_open():
     for warner in lol:
         try:
             await app.send_message(
-                int(warner.get("chat_id")), f"`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
-                quote+"\n~ "+author+"\n\n**Powered By** {BOT_USERNAME} "
+                int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
+                quote+"\n~ "+author+"\n\n**Powered By** @RozakulHalim_MBot "
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -124,11 +125,11 @@ async def job_open():
             logging.info(str(e))
             ido = warner.get("chat_id")
             try:
-                await app.send_message( LOG_GROUP_ID, f"[NIGHT MODE]\n\nFailed To Open The Group {ido}.\nError : {e}")
+                await app.send_message(LOG_GROUP_ID, f"[NIGHT MODE]\n\nFailed To Open The Group {ido}.\nError : {e}")
             except:
                 pass
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_open, trigger="cron", hour=8, minute=45)
+scheduler.add_job(job_open, trigger="cron", hour=5, minute=0)
 scheduler.start()
