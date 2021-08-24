@@ -103,8 +103,8 @@ async def job_open():
     for warner in lol:
         try:
             await app.send_message(
-                int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
-                quote+"\n~ "+author+"\n\n**Powered By {BOT_USERNAME} **"
+                int(warner.get("chat_id")), f"`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
+                quote+"\n~ "+author+"\n\n**Powered By** {BOT_USERNAME} "
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -129,5 +129,5 @@ async def job_open():
 
 
 scheduler = AsyncIOScheduler(timezone="Asia/Jakarta")
-scheduler.add_job(job_open, trigger="cron", hour=05, minute=0)
+scheduler.add_job(job_open, trigger="cron", hour=5, minute=0)
 scheduler.start()
