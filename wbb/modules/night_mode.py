@@ -63,7 +63,7 @@ async def job_close():
         try:
             await app.send_message(
                 int(warner.get(
-                    "chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By** f"@{BOT_USERNAME}""
+                    "chat_id")), f"**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By** @{BOT_USERNAME}"
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -104,8 +104,8 @@ async def job_open():
     for warner in lol:
         try:
             await app.send_message(
-                int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
-                quote+"\n~ "+author+"\n\n**Powered By** f"@{BOT_USERNAME}""
+                int(warner.get("chat_id")), f"`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
+                quote+"\n~ "+author+"\n\n**Powered By** @{BOT_USERNAME}"
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
