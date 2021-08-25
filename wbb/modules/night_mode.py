@@ -9,8 +9,8 @@
 from pyrogram import filters
 from pyrogram.types import ChatPermissions
 
-from wbb import app, LOG_GROUP_ID
-from wbb import app2, LOG_GROUP_ID
+from wbb import app, LOG_GROUP_ID, BOT_USERNAME
+from wbb import app2, LOG_GROUP_ID, BOT_USERNAME
 from wbb.core.decorators.permissions import adminsOnly
 from wbb.utils.dbfunctions import is_night_chat_in_db, get_all_night_chats, rm_night_chat, add_night_chat
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -47,7 +47,7 @@ async def scgrp(client, message):
                 return
             await rm_night_chat(message.chat.id)
             await pablo.edit(f"💢**Menghapus obrolan `{message.chat.title}` dengan Id `{message.chat.id}` dari Database.\n🌒 NigthMode Tidak Aktif")
-        elif not enable or not args:
+        else:
             pablo = await message.reply("`Memproses...`")
             pablo.edit(f"`Sory I Can Only Understand your parameters`")
     except:
@@ -63,7 +63,7 @@ async def job_close():
         try:
             await app.send_message(
                 int(warner.get(
-                    "chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By** @RozakulHalim_MBot"
+                    "chat_id")), "**🌃 Mode Malam Aktif**\n\n`Sekarang jam 24:00, Grup ditutup dan akan dibuka esok hari secara otomatis. Selamat beristirahat semuanya!!` \n**Powered By** f"@{BOT_USERNAME}""
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
@@ -105,14 +105,14 @@ async def job_open():
         try:
             await app.send_message(
                 int(warner.get("chat_id")), "`Sekarang sudah jam 5 pagi. Selamat pagi, Grup kini telah dibuka semoga hari-harimu menyenangkan.`\n\n**Quotes Today:**\n" +
-                quote+"\n~ "+author+"\n\n**Powered By** @RozakulHalim_MBot "
+                quote+"\n~ "+author+"\n\n**Powered By** f"@{BOT_USERNAME}""
             )
             await app.set_chat_permissions(
                 warner.get("chat_id"),
                 ChatPermissions(
                     can_send_messages=True,
                     can_send_media_messages=True,
-                    can_send_stickers=False,
+                    can_send_stickers=True,
                     can_send_animations=True,
                     can_invite_users=True,
                     can_add_web_page_previews=True,

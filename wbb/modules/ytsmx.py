@@ -86,7 +86,7 @@ async def ytsmx(client, message):
 **Date Uploaded:** `{_torrents[_qualities.index(def_quality)]['date_uploaded']}`
 **Available in:** `{qualsize}`
 
-**Via : {BOT_USERNAME}**
+**Via :** @{BOT_USERNAME}
 '''
         if def_quality in _qualities:
             files = f"{_title}{_torrents[_qualities.index(def_quality)]['quality']}.torrent"
